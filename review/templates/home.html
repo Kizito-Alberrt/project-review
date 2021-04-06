@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+
 <h1>Review</h1>
 
 <ul> {% for post in object_list %}
@@ -5,4 +11,7 @@
        {{post.author.username }} <br>
        {{ post.body }}</li>
 
-{% endfor %}</ul>
+{% endfor %}
+</ul>
+
+{% endblock %}
