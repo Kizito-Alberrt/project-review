@@ -3,18 +3,22 @@
 {% block content %}
 
 
+{% if  user.is_authenticated %}
+ {% if user.id == post.author.id %}
 
+    <h1>Add your project</h1>
+    <br>
+    <br>
 
-<h1>Add your project</h1>
-<br>
-<br>
+    <div class="form-group">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Update</button>
+    </form>
+    </div>
+{% else %}
+     Sorry!! login!!
 
-<div class="form-group">
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-secondary">Update</button>
-</form>
-</div>
-
+{% endif %}
 {% endblock %}

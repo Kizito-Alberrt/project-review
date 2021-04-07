@@ -8,10 +8,16 @@
 
 <ul> {% for post in object_list %}
     <li><a href="{% url 'review' post.pk %}"> {{ post.title }} </a> 
-       {{post.author.username }} 
+       {{post.author.username }} <br> {{ post.date }} <br>
        
-       <a href="{% url 'delete' post.pk %}">Delete</a> <br>
-       {{ post.body }}</li>
+       {% if user.is_authenticated %}
+         {% if user.id == post.author.id %}
+             {{ post.body }}</li>
+             <a href="{% url 'delete' post.pk %}">Delete</a> <br> <br>
+          {% endif%}
+       {% endif %}
+
+       {{ post.body|slice:":300"}}
 
 {% endfor %}
 </ul>
