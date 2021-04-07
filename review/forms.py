@@ -10,6 +10,7 @@ class form(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'add a title of your project'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'add url '}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'add author ', 'id': 'author'}),
+            # 'author': forms.Select(attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }

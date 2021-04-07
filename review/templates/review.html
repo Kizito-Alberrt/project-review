@@ -6,6 +6,7 @@
 
 
 <h1>{{ post.title }}  </h1>
+
 {% if user.is_authenticated %}
 
 {% if user.id == post.author.id %}
@@ -19,6 +20,15 @@
 {% endif %}
 
 <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+<br>
+<hr>
+<br>
+<form action="{% url 'like' post.pk %}" method="POST">
+    {% csrf_token %}
 
+    <button type="submit" name="post_id" value="{{ post.id}}" class="btn btn-primary btn-sm">like</button>
+    
+
+</form>
 
 {% endblock %}

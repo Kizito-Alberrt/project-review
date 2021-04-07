@@ -1,12 +1,20 @@
 from review.models import Post
-from django.shortcuts import render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 from .forms import form
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+from django.template import context
 # Create your views here.
 # def home(request):
 #     return render(request, 'home.html', {})
+
+def likeview(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('review', args=[str(pk)]))
+
 
 class Home(ListView):
     model = Post
@@ -16,6 +24,9 @@ class Home(ListView):
 class review(DetailView):
     model = Post
     template_name = 'review.html'
+
+    
+    
 
 class AddPostView(CreateView):
     model = Post

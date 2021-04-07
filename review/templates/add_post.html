@@ -16,5 +16,9 @@
     <button class="btn btn-secondary">Upload</button>
 </form>
 </div>
+<script>
+    var name = '{{ user.username }}';
+    document.getElementById('author').placeholder = name;
+</script>
 
 {% endblock %}
