@@ -1,25 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+   .card{
+
+      display: flex;
+      box-sizing: inherit;
+      position: relative;
+      z-index: 1;
+      padding: 14px 20px 12px 45px;
+      position: relative;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background-color: var(--pink);
+   
+      background-color: #fff;
+      
+      
+            
+   }
+</style>
 
 
+<h1> Our review collection Review</h1>
+<br>
+<br>
 
-<h1>Review</h1>
+<br>
+<br>
+  <div class="card">
+      <ul> {% for post in object_list %}
+         <li><a href="{% url 'review' post.pk %}"> {{ post.title }} </a> 
+            {{post.author.username }} <br> {{ post.date }} <br>
+            
+            {% if user.is_authenticated %}
+              {% if user.id == post.author.id %}
+                  {{ post.body }}</li>
+                  <a href="{% url 'delete' post.pk %}">Delete</a> <br> <br>
+               {% endif%}
+            {% endif %}
+     
+            {{ post.body|slice:":300"}}
+     
+     {% endfor %}
+     </ul>
+  </div>
+      
+  
 
-<ul> {% for post in object_list %}
-    <li><a href="{% url 'review' post.pk %}"> {{ post.title }} </a> 
-       {{post.author.username }} <br> {{ post.date }} <br>
-       
-       {% if user.is_authenticated %}
-         {% if user.id == post.author.id %}
-             {{ post.body }}</li>
-             <a href="{% url 'delete' post.pk %}">Delete</a> <br> <br>
-          {% endif%}
-       {% endif %}
 
-       {{ post.body|slice:":300"}}
-
-{% endfor %}
-</ul>
 
 {% endblock %}

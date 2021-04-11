@@ -1,7 +1,7 @@
 from review.models import Post
 from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+
 from .forms import form
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
@@ -44,3 +44,5 @@ class delete(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
+
+

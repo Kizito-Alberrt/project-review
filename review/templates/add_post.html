@@ -10,15 +10,76 @@
 <br>
 
 <div class="form-group">
-<form method="POST" action="">
+<form method="POST" >
     {% csrf_token %}
     {{ form.as_p }}
     <button class="btn btn-secondary">Upload</button>
 </form>
 </div>
+<br>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+            <div class="card">
+                <div class="card-header">
+                    Categories
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'home' %}">All</a>
+                    </li>
+                    {% for category in categories %}
+                    <li class=" list-group-item">
+                        <a href="{% url 'gallery' %}?category={{category.name}}">
+                            {{category.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+
+                    <a href="{% url 'post' %}" class="btn btn-secondary row-justify-content-center">Add a Project</a>
+                    
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+
+                {% for photo in photos %}
+                <div class="col-md-4">
+                    <div class="card my-2">
+                        <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap">
+
+                        <div class="card-body">
+                            <small>Category: {{photo.category.name}}</small>
+                        </div>
+                        <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                    </div>
+                </div>
+                {% empty %}
+                <h3>add a photo</h3>
+                {% endfor %}
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div> -->
 <script>
     var name = '{{ user.username }}';
     document.getElementById('author').placeholder = name;
 </script>
+<br>
+<br>
+<br>
+
 
 {% endblock %}
